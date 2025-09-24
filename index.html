@@ -1,0 +1,1452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigiSanchar - Real-time Public Transport</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/logo.png"
+        type="image/x-icon" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="logo">
+                    <img src="/assests/logo.png" alt="DigiSanchar" class="logo-img">
+                    <span class="logo-text">DigiSanchar</span>
+                </div>
+            </div>
+
+            <div class="nav-center">
+                <div class="nav-links">
+                    <a href="app.html" class="nav-link">App</a>
+                    <a href="digi-pass.html" class="nav-link">Digi-pass</a>
+                    <a href="add-ticket.html" class="nav-link">E-Ticket</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                    <a href="login.html" class="nav-link">Login</a>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="Search transport..." class="search-input">
+                </div>
+                
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Track Your <span class="highlight">Public Transport</span> in Real-Time</h1>
+            <p class="hero-subtitle">Never miss your bus, train, or metro again. Get live updates, schedules, and routes
+                for all public transport in your city.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary">Get Started</button>
+                <button class="btn-secondary">Watch Demo</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="/assests/R.png" alt="Transport Tracking" class="hero-img">
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <main class="main-container">
+        <div class="dashboard">
+
+            <!-- Journey Planner Section -->
+            <div class="journey-planner-section">
+                <div class="journey-planner-card">
+                    <div class="planner-header">
+                        <h2><i class="fas fa-route"></i> Plan Your Journey</h2>
+                        <p>Find the best transport options for your trip</p>
+                    </div>
+
+                    <div class="journey-form">
+                        <div class="location-inputs">
+                            <div class="input-group">
+                                <label for="currentLocation">
+                                    <i class="fas fa-map-marker-alt current-marker"></i>
+                                    Current Location
+                                </label>
+                                <div class="location-input-container">
+                                    <input type="text" id="currentLocation" class="location-input"
+                                        placeholder="Enter your current location">
+                                    <button class="use-gps-btn" id="useCurrentGPS">
+                                        <i class="fas fa-crosshairs"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="swap-locations" id="swapLocations">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="destination">
+                                    <i class="fas fa-map-marker-alt destination-marker"></i>
+                                    Destination
+                                </label>
+                                <div class="location-input-container">
+                                    <input type="text" id="destination" class="location-input"
+                                        placeholder="Where do you want to go?">
+                                    <button class="favorites-btn" id="showFavorites">
+                                        <i class="fas fa-star"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-options">
+                            <div class="time-preference">
+                                <label>
+                                    <input type="radio" name="timeType" value="now" checked>
+                                    <span>Leave Now</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="timeType" value="depart">
+                                    <span>Depart At</span>
+                                </label>
+                                <label>
+                                    <input type="radio" name="timeType" value="arrive">
+                                    <span>Arrive By</span>
+                                </label>
+                            </div>
+
+                            <div class="time-selector" id="timeSelector" style="display: none;">
+                                <input type="datetime-local" id="selectedTime" class="time-input">
+                            </div>
+                        </div>
+
+                        <button class="search-routes-btn" id="searchRoutes">
+                            <i class="fas fa-search"></i>
+                            Find Routes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transport Categories Section -->
+            <div class="transport-categories-section">
+                <div class="categories-header">
+                    <h2><i class="fas fa-map"></i> Travel Categories</h2>
+                    <p>Choose your travel type for specialized routes and services</p>
+                </div>
+
+                <div class="categories-grid">
+                    <div class="category-card" id="interStateCard">
+                        <div class="category-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Inter-State Travel</h3>
+                            <p>Long-distance buses, trains and flights between states</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-route"></i> 250+ Routes</span>
+                                <span><i class="fas fa-bus"></i> 45 Operators</span>
+                            </div>
+                        </div>
+                        <button class="category-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Explore Routes
+                        </button>
+                    </div>
+
+                    <div class="category-card" id="interCityCard">
+                        <div class="category-icon">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Inter-City Travel</h3>
+                            <p>Regional buses, trains connecting nearby cities</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-route"></i> 180+ Routes</span>
+                                <span><i class="fas fa-bus"></i> 30 Operators</span>
+                            </div>
+                        </div>
+                        <button class="category-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Explore Routes
+                        </button>
+                    </div>
+
+                    <div class="category-card" id="scheduleForLaterCard">
+                        <div class="category-icon">
+                            <i class="fas fa-calendar-clock"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Schedule for Later</h3>
+                            <p>Plan and book your future trips in advance</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-clock"></i> Up to 30 days</span>
+                                <span><i class="fas fa-bell"></i> Smart Reminders</span>
+                            </div>
+                        </div>
+                        <button class="category-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            Schedule Trip
+                        </button>
+                    </div>
+
+                    <div class="category-card" id="travelHistoryCard">
+                        <div class="category-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>My Travel History</h3>
+                            <p>View current, scheduled and previous trips</p>
+                            <div class="category-stats">
+                                <span><i class="fas fa-route"></i> Track Active</span>
+                                <span><i class="fas fa-ticket-alt"></i> Manage Bookings</span>
+                            </div>
+                        </div>
+                        <button class="category-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            View History
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Management Section -->
+            <div class="service-management-section">
+                <div class="service-header">
+                    <h2><i class="fas fa-tools"></i> Service Management</h2>
+                    <p>Manage your transport services and experience with our platform</p>
+                </div>
+
+                <div class="service-grid">
+                    <div class="service-card business-card" id="registerServiceCard">
+                        <div class="service-icon business-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Register Your Services</h3>
+                            <p>Transport operators can list their vehicles and routes on our platform</p>
+                            <div class="service-benefits">
+                                <span><i class="fas fa-users"></i> Reach more passengers</span>
+                                <span><i class="fas fa-chart-line"></i> Increase bookings</span>
+                                <span><i class="fas fa-mobile-alt"></i> Real-time management</span>
+                            </div>
+                            <div class="service-badge">For Operators</div>
+                        </div>
+                        <button class="service-btn business-btn">
+                            <i class="fas fa-plus-circle"></i>
+                            Register Service
+                        </button>
+                    </div>
+
+                    <div class="service-card rating-card" id="rateTripsCard">
+                        <div class="service-icon rating-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Rate Your Trips</h3>
+                            <p>Share your experience and help improve transport services</p>
+                            <div class="service-benefits">
+                                <span><i class="fas fa-thumbs-up"></i> Share feedback</span>
+                                <span><i class="fas fa-award"></i> Help others choose</span>
+                                <span><i class="fas fa-heart"></i> Improve services</span>
+                            </div>
+                            <div class="service-badge rating-badge">Rate & Review</div>
+                        </div>
+                        <button class="service-btn rating-btn">
+                            <i class="fas fa-star-half-alt"></i>
+                            Rate Trips
+                        </button>
+                    </div>
+
+                    <div class="service-card report-card" id="reportIssueCard">
+                        <div class="service-icon report-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Report Issues</h3>
+                            <p>Report problems, suggest improvements, or get help with our services</p>
+                            <div class="service-benefits">
+                                <span><i class="fas fa-headset"></i> 24/7 Support</span>
+                                <span><i class="fas fa-clock"></i> Quick response</span>
+                                <span><i class="fas fa-shield-alt"></i> Anonymous option</span>
+                            </div>
+                            <div class="service-badge report-badge">Support</div>
+                        </div>
+                        <button class="service-btn report-btn">
+                            <i class="fas fa-flag"></i>
+                            Report Issue
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Available Options Section -->
+            <div class="available-options-section" id="availableOptions" style="display: none;">
+                <div class="options-header">
+                    <h2>Available Transport Options</h2>
+                    <div class="sort-filter">
+                        <select id="sortOptions" class="sort-select">
+                            <option value="time">Fastest</option>
+                            <option value="price">Cheapest</option>
+                            <option value="comfort">Most Comfortable</option>
+                        </select>
+                        <button class="filter-btn" id="filterBtn">
+                            <i class="fas fa-filter"></i> Filters
+                        </button>
+                    </div>
+                </div>
+
+                <div class="transport-options-list" id="transportOptionsList">
+                    <!-- Transport options will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Location Section -->
+            <div class="location-section">
+                <div class="location-card">
+                    <div class="location-header">
+                        <i class="fas fa-map-marker-alt location-icon"></i>
+                        <h3>Current Location</h3>
+                        <button class="location-permission-btn" id="locationBtn">
+                            <i class="fas fa-crosshairs"></i>
+                            Get Location
+                        </button>
+                    </div>
+                    <div class="current-location" id="currentLocationDisplay">
+                        <span class="city-name">Detecting your location...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions Grid -->
+            <div class="quick-actions">
+                <div class="action-card" id="trackRideCard">
+                    <div class="action-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Find & Track Ride</h3>
+                    <p>Real-time tracking of your journey</p>
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="trackToggle" class="toggle-checkbox">
+                        <label for="trackToggle" class="toggle-label">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="action-card" id="transportNearCard">
+                    <div class="action-icon">
+                        <i class="fas fa-bus"></i>
+                    </div>
+                    <h3>Transport Near You</h3>
+                    <p>Find buses, trains & metros nearby</p>
+                    <button class="action-btn">Open Map</button>
+                </div>
+
+                <div class="action-card" id="scheduleCard">
+                    <div class="action-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Transport Schedule</h3>
+                    <p>Next 5 hours schedule</p>
+                    <button class="action-btn">View Schedule</button>
+                </div>
+
+                <div class="action-card" id="pricesCard">
+                    <div class="action-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3>Route Prices</h3>
+                    <p>Compare transport fares</p>
+                    <button class="action-btn">Check Prices</button>
+                </div>
+
+                <div class="action-card" id="busStopCard">
+                    <div class="action-icon">
+                        <i class="fas fa-map-signs"></i>
+                    </div>
+                    <h3>Nearest Bus Stop</h3>
+                    <p>Find closest stops with directions</p>
+                    <button class="action-btn">Find Stops</button>
+                </div>
+            </div>
+
+            <!-- Live Updates Section -->
+            <div class="live-updates-section">
+                <h2>Live Transport Updates</h2>
+                <div class="updates-container" id="liveUpdates">
+                    <!-- Live updates will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Register Service Modal -->
+    <div class="modal" id="registerServiceModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-building"></i> Register Your Transport Service</h3>
+                <span class="close-modal" data-modal="registerServiceModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="service-registration-container">
+                    <div class="registration-progress">
+                        <div class="progress-step active" data-step="1">
+                            <div class="step-number">1</div>
+                            <div class="step-label">Business Info</div>
+                        </div>
+                        <div class="progress-step" data-step="2">
+                            <div class="step-number">2</div>
+                            <div class="step-label">Vehicle Details</div>
+                        </div>
+                        <div class="progress-step" data-step="3">
+                            <div class="step-number">3</div>
+                            <div class="step-label">Routes & Schedule</div>
+                        </div>
+                        <div class="progress-step" data-step="4">
+                            <div class="step-number">4</div>
+                            <div class="step-label">Documentation</div>
+                        </div>
+                    </div>
+
+                    <form class="registration-form" id="serviceRegistrationForm">
+                        <!-- Step 1: Business Information -->
+                        <div class="form-step active" id="step1">
+                            <h4>Business Information</h4>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="businessName">Business/Company Name *</label>
+                                    <input type="text" id="businessName" name="businessName" required
+                                        placeholder="Enter your business name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessType">Business Type *</label>
+                                    <select id="businessType" name="businessType" required>
+                                        <option value="">Select business type</option>
+                                        <option value="private">Private Transport Company</option>
+                                        <option value="government">Government Transport</option>
+                                        <option value="cooperative">Transport Cooperative</option>
+                                        <option value="individual">Individual Operator</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessEmail">Business Email *</label>
+                                    <input type="email" id="businessEmail" name="businessEmail" required
+                                        placeholder="business@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessPhone">Business Phone *</label>
+                                    <input type="tel" id="businessPhone" name="businessPhone" required
+                                        placeholder="+91 XXXXX XXXXX">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="businessAddress">Business Address *</label>
+                                    <textarea id="businessAddress" name="businessAddress" required
+                                        placeholder="Enter complete business address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="operatingLicense">Operating License Number *</label>
+                                    <input type="text" id="operatingLicense" name="operatingLicense" required
+                                        placeholder="Enter license number">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gstNumber">GST Number (if applicable)</label>
+                                    <input type="text" id="gstNumber" name="gstNumber" placeholder="Enter GST number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Vehicle Details -->
+                        <div class="form-step" id="step2">
+                            <h4>Vehicle Information</h4>
+                            <div class="vehicle-section">
+                                <div class="form-group">
+                                    <label for="fleetSize">Total Fleet Size *</label>
+                                    <input type="number" id="fleetSize" name="fleetSize" required min="1"
+                                        placeholder="Number of vehicles">
+                                </div>
+
+                                <div class="vehicle-list" id="vehicleList">
+                                    <div class="vehicle-item">
+                                        <h5>Vehicle 1</h5>
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label>Vehicle Type *</label>
+                                                <select name="vehicleType[]" required>
+                                                    <option value="">Select type</option>
+                                                    <option value="bus">Bus</option>
+                                                    <option value="minibus">Mini Bus</option>
+                                                    <option value="tempo">Tempo Traveller</option>
+                                                    <option value="auto">Auto Rickshaw</option>
+                                                    <option value="taxi">Taxi</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Vehicle Number *</label>
+                                                <input type="text" name="vehicleNumber[]" required
+                                                    placeholder="MH 12 AB 1234">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Seating Capacity *</label>
+                                                <input type="number" name="seatingCapacity[]" required min="1"
+                                                    placeholder="Number of seats">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Vehicle Model/Year</label>
+                                                <input type="text" name="vehicleModel[]"
+                                                    placeholder="e.g., Tata LP 2018">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fuel Type</label>
+                                                <select name="fuelType[]">
+                                                    <option value="diesel">Diesel</option>
+                                                    <option value="petrol">Petrol</option>
+                                                    <option value="cng">CNG</option>
+                                                    <option value="electric">Electric</option>
+                                                    <option value="hybrid">Hybrid</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>AC Available</label>
+                                                <select name="acAvailable[]">
+                                                    <option value="no">No</option>
+                                                    <option value="yes">Yes</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="add-vehicle-btn" id="addVehicleBtn">
+                                    <i class="fas fa-plus"></i> Add Another Vehicle
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Routes & Schedule -->
+                        <div class="form-step" id="step3">
+                            <h4>Routes & Operating Schedule</h4>
+                            <div class="routes-section">
+                                <div class="route-list" id="routeList">
+                                    <div class="route-item">
+                                        <h5>Route 1</h5>
+                                        <div class="form-grid">
+                                            <div class="form-group">
+                                                <label>Route Name *</label>
+                                                <input type="text" name="routeName[]" required
+                                                    placeholder="e.g., City Center - Airport">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Start Point *</label>
+                                                <input type="text" name="startPoint[]" required
+                                                    placeholder="Starting location">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>End Point *</label>
+                                                <input type="text" name="endPoint[]" required placeholder="Destination">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Distance (km)</label>
+                                                <input type="number" name="routeDistance[]"
+                                                    placeholder="Distance in kilometers">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Estimated Duration</label>
+                                                <input type="text" name="routeDuration[]" placeholder="e.g., 1h 30m">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Fare (₹) *</label>
+                                                <input type="number" name="routeFare[]" required
+                                                    placeholder="Ticket price">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Operating Days *</label>
+                                                <select name="operatingDays[]" required>
+                                                    <option value="">Select operating days</option>
+                                                    <option value="daily">Daily (7 days)</option>
+                                                    <option value="weekdays">Weekdays only</option>
+                                                    <option value="weekends">Weekends only</option>
+                                                    <option value="custom">Custom schedule</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Frequency (per day)</label>
+                                                <input type="number" name="routeFrequency[]"
+                                                    placeholder="Number of trips per day">
+                                            </div>
+                                            <div class="form-group full-width">
+                                                <label>Key Stops (comma-separated)</label>
+                                                <textarea name="keyStops[]"
+                                                    placeholder="List major stops along the route"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="button" class="add-route-btn" id="addRouteBtn">
+                                    <i class="fas fa-plus"></i> Add Another Route
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Documentation -->
+                        <div class="form-step" id="step4">
+                            <h4>Required Documentation</h4>
+                            <div class="documents-section">
+                                <div class="form-group">
+                                    <label>Business Registration Certificate *</label>
+                                    <input type="file" name="businessCertificate" accept=".pdf,.jpg,.jpeg,.png"
+                                        required>
+                                    <small>Upload business registration document</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Transport License *</label>
+                                    <input type="file" name="transportLicense" accept=".pdf,.jpg,.jpeg,.png" required>
+                                    <small>Upload valid transport operator license</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Vehicle Registration Documents *</label>
+                                    <input type="file" name="vehicleDocuments" multiple accept=".pdf,.jpg,.jpeg,.png"
+                                        required>
+                                    <small>Upload RC documents for all vehicles</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Insurance Documents *</label>
+                                    <input type="file" name="insuranceDocuments" multiple accept=".pdf,.jpg,.jpeg,.png"
+                                        required>
+                                    <small>Upload valid insurance certificates</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Driver License Copies</label>
+                                    <input type="file" name="driverLicenses" multiple accept=".pdf,.jpg,.jpeg,.png">
+                                    <small>Upload copies of driver licenses</small>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>PAN/GST Documents</label>
+                                    <input type="file" name="taxDocuments" accept=".pdf,.jpg,.jpeg,.png">
+                                    <small>Upload PAN card or GST registration</small>
+                                </div>
+
+                                <div class="agreement-section">
+                                    <div class="form-group">
+                                        <label class="checkbox-container">
+                                            <input type="checkbox" name="termsAccepted" required>
+                                            <span class="checkmark"></span>
+                                            I agree to the <a href="#" target="_blank">Terms and Conditions</a> for
+                                            transport operators
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="checkbox-container">
+                                            <input type="checkbox" name="dataAccuracy">
+                                            <span class="checkmark"></span>
+                                            I certify that all information provided is accurate and complete
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-navigation">
+                            <button type="button" class="nav-btn prev-btn" id="prevStepBtn" style="display: none;">
+                                <i class="fas fa-arrow-left"></i> Previous
+                            </button>
+                            <button type="button" class="nav-btn next-btn" id="nextStepBtn">
+                                Next <i class="fas fa-arrow-right"></i>
+                            </button>
+                            <button type="submit" class="nav-btn submit-btn" id="submitRegistration"
+                                style="display: none;">
+                                <i class="fas fa-check"></i> Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rate Trips Modal -->
+    <div class="modal" id="rateTripsModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-star"></i> Rate Your Trips</h3>
+                <span class="close-modal" data-modal="rateTripsModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="rating-container">
+                    <div class="rating-tabs">
+                        <button class="tab-btn active" data-tab="pending">Pending Ratings</button>
+                        <button class="tab-btn" data-tab="completed">My Ratings</button>
+                    </div>
+
+                    <div class="tab-content active" id="pendingRatingsTab">
+                        <div class="pending-trips-list" id="pendingTripsList">
+                            <!-- Pending trips will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="completedRatingsTab">
+                        <div class="completed-ratings-list" id="completedRatingsList">
+                            <!-- Completed ratings will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip Rating Modal -->
+    <div class="modal" id="tripRatingModal">
+        <div class="modal-content medium-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-star-half-alt"></i> Rate Your Trip</h3>
+                <span class="close-modal" data-modal="tripRatingModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="trip-rating-form" id="tripRatingForm">
+                    <div class="trip-summary" id="ratingTripSummary">
+                        <!-- Trip summary will be populated -->
+                    </div>
+
+                    <div class="rating-sections">
+                        <div class="rating-section">
+                            <h4>Overall Experience</h4>
+                            <div class="star-rating" data-rating="overall">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="rating-section">
+                            <h4>Punctuality</h4>
+                            <div class="star-rating" data-rating="punctuality">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="rating-section">
+                            <h4>Cleanliness</h4>
+                            <div class="star-rating" data-rating="cleanliness">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="rating-section">
+                            <h4>Staff Behavior</h4>
+                            <div class="star-rating" data-rating="staff">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+
+                        <div class="rating-section">
+                            <h4>Value for Money</h4>
+                            <div class="star-rating" data-rating="value">
+                                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="review-section">
+                        <label for="tripReview">Write a Review (Optional)</label>
+                        <textarea id="tripReview"
+                            placeholder="Share your experience to help other travelers..."></textarea>
+                    </div>
+
+                    <div class="photo-upload-section">
+                        <label>Add Photos (Optional)</label>
+                        <div class="photo-upload-area" id="photoUploadArea">
+                            <i class="fas fa-camera"></i>
+                            <span>Click to add photos</span>
+                            <input type="file" id="tripPhotos" multiple accept="image/*" style="display: none;">
+                        </div>
+                        <div class="uploaded-photos" id="uploadedPhotos"></div>
+                    </div>
+
+                    <div class="rating-actions">
+                        <button type="button" class="rating-action-btn cancel-rating">
+                            Cancel
+                        </button>
+                        <button type="button" class="rating-action-btn submit-rating">
+                            <i class="fas fa-star"></i>
+                            Submit Rating
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Issue Modal -->
+    <div class="modal" id="reportIssueModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-flag"></i> Report an Issue</h3>
+                <span class="close-modal" data-modal="reportIssueModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="report-container">
+                    <div class="report-categories">
+                        <h4>What type of issue would you like to report?</h4>
+                        <div class="category-options">
+                            <div class="report-category-card" data-category="service">
+                                <div class="category-icon">
+                                    <i class="fas fa-bus"></i>
+                                </div>
+                                <h5>Service Issue</h5>
+                                <p>Problems with transport service, delays, cancellations</p>
+                            </div>
+                            <div class="report-category-card" data-category="driver">
+                                <div class="category-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h5>Driver/Staff</h5>
+                                <p>Issues with driver behavior or staff conduct</p>
+                            </div>
+                            <div class="report-category-card" data-category="safety">
+                                <div class="category-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h5>Safety Concern</h5>
+                                <p>Safety-related issues or dangerous situations</p>
+                            </div>
+                            <div class="report-category-card" data-category="vehicle">
+                                <div class="category-icon">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h5>Vehicle Condition</h5>
+                                <p>Vehicle maintenance, cleanliness, or comfort issues</p>
+                            </div>
+                            <div class="report-category-card" data-category="payment">
+                                <div class="category-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <h5>Payment/Billing</h5>
+                                <p>Fare disputes, payment issues, overcharging</p>
+                            </div>
+                            <div class="report-category-card" data-category="app">
+                                <div class="category-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <h5>App/Website</h5>
+                                <p>Technical issues with the platform</p>
+                            </div>
+                            <div class="report-category-card" data-category="suggestion">
+                                <div class="category-icon">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                                <h5>Suggestion</h5>
+                                <p>Ideas for improvement or new features</p>
+                            </div>
+                            <div class="report-category-card" data-category="other">
+                                <div class="category-icon">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </div>
+                                <h5>Other</h5>
+                                <p>Any other issue not listed above</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="report-form" id="reportForm" style="display: none;">
+                        <div class="report-details">
+                            <div class="form-group">
+                                <label for="issueTitle">Issue Title *</label>
+                                <input type="text" id="issueTitle" name="issueTitle" required
+                                    placeholder="Brief description of the issue">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="issueDescription">Detailed Description *</label>
+                                <textarea id="issueDescription" name="issueDescription" required
+                                    placeholder="Please provide as much detail as possible about the issue..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="urgencyLevel">Priority Level</label>
+                                <select id="urgencyLevel" name="urgencyLevel">
+                                    <option value="low">Low - General feedback</option>
+                                    <option value="medium" selected>Medium - Needs attention</option>
+                                    <option value="high">High - Urgent issue</option>
+                                    <option value="critical">Critical - Safety concern</option>
+                                </select>
+                            </div>
+
+                            <div class="trip-details-section">
+                                <h5>Trip Details (if applicable)</h5>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="tripDate">Date of Travel</label>
+                                        <input type="date" id="tripDate" name="tripDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="tripTime">Time of Travel</label>
+                                        <input type="time" id="tripTime" name="tripTime">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="routeDetails">Route/Service</label>
+                                        <input type="text" id="routeDetails" name="routeDetails"
+                                            placeholder="e.g., Bus 47A, Mumbai-Pune">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleNumber">Vehicle Number</label>
+                                        <input type="text" id="vehicleNumber" name="vehicleNumber"
+                                            placeholder="e.g., MH 12 AB 1234">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contact-details-section">
+                                <h5>Contact Information</h5>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="reporterName">Your Name</label>
+                                        <input type="text" id="reporterName" name="reporterName"
+                                            placeholder="Your full name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reporterEmail">Email Address</label>
+                                        <input type="email" id="reporterEmail" name="reporterEmail"
+                                            placeholder="your.email@example.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reporterPhone">Phone Number</label>
+                                        <input type="tel" id="reporterPhone" name="reporterPhone"
+                                            placeholder="+91 XXXXX XXXXX">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="checkbox-container">
+                                            <input type="checkbox" id="anonymousReport" name="anonymousReport">
+                                            <span class="checkmark"></span>
+                                            Submit anonymously
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="attachments-section">
+                                <label>Attach Supporting Files</label>
+                                <div class="file-upload-area" id="reportFileUpload">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span>Click to upload photos, videos, or documents</span>
+                                    <input type="file" id="reportFiles" multiple
+                                        accept="image/*,video/*,.pdf,.doc,.docx" style="display: none;">
+                                </div>
+                                <div class="uploaded-files" id="uploadedFiles"></div>
+                            </div>
+
+                            <div class="report-actions">
+                                <button type="button" class="report-action-btn cancel-report">
+                                    Cancel
+                                </button>
+                                <button type="submit" class="report-action-btn submit-report">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit Report
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Modals -->
+    <!-- Inter-State Routes Modal -->
+    <div class="modal" id="interStateModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-globe-asia"></i> Inter-State Transport Routes</h3>
+                <span class="close-modal" data-modal="interStateModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="inter-state-container">
+                    <div class="route-filters">
+                        <div class="filter-group">
+                            <label>From State:</label>
+                            <select id="fromState" class="filter-select">
+                                <option value="">Select State</option>
+                                <option value="maharashtra">Maharashtra</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <option value="gujarat">Gujarat</option>
+                                <option value="rajasthan">Rajasthan</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>To State:</label>
+                            <select id="toState" class="filter-select">
+                                <option value="">Select State</option>
+                                <option value="maharashtra">Maharashtra</option>
+                                <option value="karnataka">Karnataka</option>
+                                <option value="tamil-nadu">Tamil Nadu</option>
+                                <option value="gujarat">Gujarat</option>
+                                <option value="rajasthan">Rajasthan</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Transport Type:</label>
+                            <select id="interStateTransportType" class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="bus">Bus</option>
+                                <option value="train">Train</option>
+                                <option value="flight">Flight</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="routes-list" id="interStateRoutesList">
+                        <!-- Routes will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inter-City Routes Modal -->
+    <div class="modal" id="interCityModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-city"></i> Inter-City Transport Routes</h3>
+                <span class="close-modal" data-modal="interCityModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="inter-city-container">
+                    <div class="route-filters">
+                        <div class="filter-group">
+                            <label>From City:</label>
+                            <select id="fromCity" class="filter-select">
+                                <option value="">Select City</option>
+                                <option value="pune">Pune</option>
+                                <option value="nashik">Nashik</option>
+                                <option value="aurangabad">Aurangabad</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="kolhapur">Kolhapur</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>To City:</label>
+                            <select id="toCity" class="filter-select">
+                                <option value="">Select City</option>
+                                <option value="pune">Pune</option>
+                                <option value="nashik">Nashik</option>
+                                <option value="aurangabad">Aurangabad</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="kolhapur">Kolhapur</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>Transport Type:</label>
+                            <select id="interCityTransportType" class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="bus">Bus</option>
+                                <option value="train">Train</option>
+                                <option value="shared-taxi">Shared Taxi</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="routes-list" id="interCityRoutesList">
+                        <!-- Routes will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule for Later Modal -->
+    <div class="modal" id="scheduleForLaterModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-clock"></i> Schedule Your Trip</h3>
+                <span class="close-modal" data-modal="scheduleForLaterModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="schedule-trip-container">
+                    <div class="schedule-form">
+                        <div class="form-group">
+                            <label>Trip Name</label>
+                            <input type="text" id="tripName" class="schedule-input"
+                                placeholder="e.g., Weekend trip to Goa">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>From</label>
+                                <input type="text" id="scheduleFrom" class="schedule-input"
+                                    placeholder="Starting location">
+                            </div>
+                            <div class="form-group">
+                                <label>To</label>
+                                <input type="text" id="scheduleTo" class="schedule-input" placeholder="Destination">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Travel Date</label>
+                                <input type="date" id="travelDate" class="schedule-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Time</label>
+                                <input type="time" id="preferredTime" class="schedule-input">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Transport Preference</label>
+                            <div class="preference-checkboxes">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="bus"> Bus
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="train"> Train
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="flight"> Flight
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Notification Preferences</label>
+                            <div class="notification-options">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> 24 hours before
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked> 2 hours before
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox"> Price drop alerts
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="schedule-save-btn" id="saveScheduledTrip">
+                            <i class="fas fa-calendar-plus"></i>
+                            Schedule Trip
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Travel History Modal -->
+    <div class="modal" id="travelHistoryModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3><i class="fas fa-history"></i> My Travel History</h3>
+                <span class="close-modal" data-modal="travelHistoryModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="travel-history-container">
+                    <div class="history-tabs">
+                        <button class="tab-btn active" data-tab="current">Current Trips</button>
+                        <button class="tab-btn" data-tab="scheduled">Scheduled Trips</button>
+                        <button class="tab-btn" data-tab="previous">Previous Trips</button>
+                    </div>
+
+                    <div class="tab-content active" id="currentTripsTab">
+                        <div class="trips-list" id="currentTripsList">
+                            <!-- Current trips will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="scheduledTripsTab">
+                        <div class="trips-list" id="scheduledTripsList">
+                            <!-- Scheduled trips will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="previousTripsTab">
+                        <div class="trips-search">
+                            <input type="text" placeholder="Search previous trips..." class="search-trips">
+                            <div class="date-filter">
+                                <input type="date" id="fromDate" class="date-input">
+                                <span>to</span>
+                                <input type="date" id="toDate" class="date-input">
+                            </div>
+                        </div>
+                        <div class="trips-list" id="previousTripsList">
+                            <!-- Previous trips will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Transport Option Details Modal -->
+    <div class="modal" id="transportDetailsModal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3>Transport Details</h3>
+                <span class="close-modal" data-modal="transportDetailsModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="transport-details-container">
+                    <div class="details-tabs">
+                        <button class="tab-btn active" data-tab="route">Route & Map</button>
+                        <button class="tab-btn" data-tab="crowd">Live Crowd Info</button>
+                        <button class="tab-btn" data-tab="pricing">Pricing Details</button>
+                        <button class="tab-btn" data-tab="booking">Reserve Seat</button>
+                    </div>
+
+                    <div class="tab-content active" id="routeTab">
+                        <div class="route-map-container">
+                            <div id="detailsMap" class="details-map">
+                                <div class="map-placeholder">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                    <p>Interactive route map will display here</p>
+                                    <p>Showing current location, stops, and destination</p>
+                                </div>
+                            </div>
+                            <div class="route-info">
+                                <div class="route-timeline" id="routeTimeline">
+                                    <!-- Route timeline will be populated -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="crowdTab">
+                        <div class="crowd-info-container">
+                            <div class="crowd-meter">
+                                <h4>Current Crowd Level</h4>
+                                <div class="crowd-indicator">
+                                    <div class="crowd-bar">
+                                        <div class="crowd-fill" id="crowdLevel"></div>
+                                    </div>
+                                    <span class="crowd-text" id="crowdText">Loading...</span>
+                                </div>
+                            </div>
+
+                            <div class="crowd-predictions">
+                                <h4>Crowd Predictions</h4>
+                                <div class="prediction-chart" id="crowdChart">
+                                    <!-- Crowd prediction chart -->
+                                </div>
+                            </div>
+
+                            <div class="crowd-tips">
+                                <h4>Travel Tips</h4>
+                                <div class="tips-list" id="crowdTips">
+                                    <!-- Tips will be populated -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="pricingTab">
+                        <div class="pricing-details-container">
+                            <div class="fare-breakdown">
+                                <h4>Fare Breakdown</h4>
+                                <div class="fare-items" id="fareBreakdown">
+                                    <!-- Fare details will be populated -->
+                                </div>
+                            </div>
+
+                            <div class="payment-options">
+                                <h4>Payment Methods</h4>
+                                <div class="payment-methods" id="paymentMethods">
+                                    <!-- Payment options will be populated -->
+                                </div>
+                            </div>
+
+                            <div class="discounts-offers">
+                                <h4>Available Offers</h4>
+                                <div class="offers-list" id="offersList">
+                                    <!-- Offers will be populated -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="bookingTab">
+                        <div class="seat-reservation-container">
+                            <div class="seat-selection">
+                                <h4>Select Your Preference</h4>
+                                <div class="preference-options">
+                                    <label class="preference-option">
+                                        <input type="radio" name="seatPreference" value="any" checked>
+                                        <span>Any Available Seat</span>
+                                    </label>
+                                    <label class="preference-option">
+                                        <input type="radio" name="seatPreference" value="window">
+                                        <span>Window Seat (if available)</span>
+                                    </label>
+                                    <label class="preference-option">
+                                        <input type="radio" name="seatPreference" value="aisle">
+                                        <span>Aisle Seat (if available)</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="passenger-info">
+                                <h4>Passenger Information</h4>
+                                <div class="passenger-form">
+                                    <input type="text" placeholder="Full Name" class="passenger-input">
+                                    <input type="tel" placeholder="Phone Number" class="passenger-input">
+                                    <input type="email" placeholder="Email (optional)" class="passenger-input">
+                                </div>
+                            </div>
+
+                            <div class="booking-summary">
+                                <div class="summary-item">
+                                    <span>Route:</span>
+                                    <span id="summaryRoute">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Departure:</span>
+                                    <span id="summaryTime">-</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Total Fare:</span>
+                                    <span id="summaryFare">₹0</span>
+                                </div>
+                            </div>
+
+                            <button class="reserve-btn" id="reserveButton">
+                                <i class="fas fa-ticket-alt"></i>
+                                Reserve Seat - Pay Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Existing Modals -->
+    <!-- Transport Near You Modal -->
+    <div class="modal" id="transportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Transport Near You</h3>
+                <span class="close-modal" data-modal="transportModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="map-container">
+                    <div id="transportMap" class="map-placeholder">
+                        <p>Interactive map will load here</p>
+                        <p>Showing buses, trains, and metro stations near your location</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div class="modal" id="scheduleModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Transport Schedule - Next 5 Hours</h3>
+                <span class="close-modal" data-modal="scheduleModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="schedule-container" id="scheduleList">
+                    <!-- Schedule will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prices Modal -->
+    <div class="modal" id="pricesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Route Prices</h3>
+                <span class="close-modal" data-modal="pricesModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="price-comparison" id="pricesList">
+                    <!-- Prices will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bus Stop Modal -->
+    <div class="modal" id="busStopModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nearest Bus Stops</h3>
+                <span class="close-modal" data-modal="busStopModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="bus-stops-container" id="busStopsList">
+                    <!-- Bus stops will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>DigiSanchar</h4>
+                <p>Making public transport accessible and efficient for smaller cities across India.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="about.html" class="footer-link">About Us</a>
+                <a href="contact.html" class="footer-link">Contact</a>
+                <a href="support.html" class="footer-link">Support</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DigiSanchar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

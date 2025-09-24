@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Support Center • DigiSanchar</title>
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/support.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <header class="sp-header">
+    <div class="sp-container">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="DigiSanchar" class="brand-logo" />
+        <span class="brand-name">DigiSanchar</span>
+      </a>
+      <nav class="sp-nav">
+        <a href="index.html">Home</a>
+        <a href="/routes.html">Routes</a>
+        <a href="/schedule.html">Schedule</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a class="active" href="support.html">Support</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-outline" onclick="DigiSancharSupport.showLogin()">
+          <i class="fa-solid fa-user"></i> Login
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Search -->
+    <section class="sp-hero">
+      <div class="sp-container">
+        <h1>How can we help you?</h1>
+        <p>Support for your bookings and other related issues</p>
+        <div class="hero-search">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="globalSearch" type="text" placeholder="Search for help..." />
+            <button class="search-btn" onclick="DigiSancharSupport.performSearch()">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="sp-section">
+      <div class="sp-container">
+        <div class="quick-actions">
+          <button class="quick-btn" onclick="DigiSancharSupport.openChat()">
+            <i class="fa-solid fa-comments"></i>
+            <span>Live Chat</span>
+          </button>
+          <button class="quick-btn" onclick="DigiSancharSupport.trackBooking()">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Track Booking</span>
+          </button>
+          <button class="quick-btn" onclick="DigiSancharSupport.reportIssue()">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <span>Report Issue</span>
+          </button>
+          <button class="quick-btn" onclick="DigiSancharSupport.refundStatus()">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <span>Refund Status</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Categories -->
+    <section class="sp-section">
+      <div class="sp-container">
+        <h2>Support Categories</h2>
+        <div class="categories-grid">
+          <!-- My Account -->
+          <article class="category-card" data-category="account">
+            <div class="category-icon account">
+              <i class="fa-solid fa-user-circle"></i>
+            </div>
+            <h3>My Account</h3>
+            <p>Profile settings, login issues, and account management</p>
+            <ul class="category-topics">
+              <li>Login & Registration</li>
+              <li>Profile Update</li>
+              <li>Account Security</li>
+              <li>Delete Account</li>
+            </ul>
+          </article>
+
+          <!-- Bookings -->
+          <article class="category-card" data-category="bookings">
+            <div class="category-icon bookings">
+              <i class="fa-solid fa-ticket"></i>
+            </div>
+            <h3>Bookings & Travel</h3>
+            <p>Trip bookings, cancellations, and journey support</p>
+            <ul class="category-topics">
+              <li>Book a Trip</li>
+              <li>Cancel Booking</li>
+              <li>Modify Journey</li>
+              <li>Trip History</li>
+            </ul>
+          </article>
+
+          <!-- Payments -->
+          <article class="category-card" data-category="payments">
+            <div class="category-icon payments">
+              <i class="fa-solid fa-credit-card"></i>
+            </div>
+            <h3>Payments & Refunds</h3>
+            <p>Payment methods, charges, and refund processing</p>
+            <ul class="category-topics">
+              <li>Payment Methods</li>
+              <li>Transaction Issues</li>
+              <li>Refund Process</li>
+              <li>DigiSanchar Wallet</li>
+            </ul>
+          </article>
+
+          <!-- Safety -->
+          <article class="category-card" data-category="safety">
+            <div class="category-icon safety">
+              <i class="fa-solid fa-shield-heart"></i>
+            </div>
+            <h3>Safety & Security</h3>
+            <p>Travel safety, emergency contacts, and security features</p>
+            <ul class="category-topics">
+              <li>Emergency Support</li>
+              <li>Lost & Found</li>
+              <li>Safety Features</li>
+              <li>Report Incident</li>
+            </ul>
+          </article>
+
+          <!-- Technical -->
+          <article class="category-card" data-category="technical">
+            <div class="category-icon technical">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+            <h3>App & Technical</h3>
+            <p>App issues, updates, and technical troubleshooting</p>
+            <ul class="category-topics">
+              <li>App Not Working</li>
+              <li>GPS Issues</li>
+              <li>Update Problems</li>
+              <li>Performance Issues</li>
+            </ul>
+          </article>
+
+          <!-- General -->
+          <article class="category-card" data-category="general">
+            <div class="category-icon general">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <h3>General Info</h3>
+            <p>About DigiSanchar, services, and general questions</p>
+            <ul class="category-topics">
+              <li>How DigiSanchar Works</li>
+              <li>Service Areas</li>
+              <li>Pricing Info</li>
+              <li>Partnerships</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular FAQs -->
+    <section class="sp-section alt">
+      <div class="sp-container">
+        <h2>Popular FAQs</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I book a journey on DigiSanchar?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Download the DigiSanchar app, enter your current location and destination, choose your preferred transport option, and confirm your booking. You can track your journey in real-time.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What payment methods are accepted?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>We accept UPI, debit/credit cards, net banking, DigiSanchar Wallet, and cash payments. Digital payments are preferred for contactless transactions.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How can I cancel my booking?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>You can cancel your booking through the app up to 30 minutes before departure. Cancellation charges may apply based on the timing and booking type.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>What should I do if my transport is delayed?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Check real-time updates in the app. If there are significant delays, you can reschedule or get a refund. Contact support for assistance with alternate options.</p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question">
+              <span>How do I report a safety concern?</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="faq-answer">
+              <p>Use the emergency button in the app, contact our 24/7 safety helpline, or report through the 'Safety' section in Support. All reports are handled with highest priority.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Support -->
+    <section class="sp-section">
+      <div class="sp-container">
+        <h2>Still need help?</h2>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3>24/7 Phone Support</h3>
+            <p>Speak directly with our support team</p>
+            <a href="tel:+91-80-4040-0000" class="contact-btn">
+              <i class="fa-solid fa-phone"></i> +91-80-4040-0000
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h3>Email Support</h3>
+            <p>Get detailed help via email</p>
+            <a href="mailto:support@digisanchar.example" class="contact-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Email
+            </a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <h3>Live Chat</h3>
+            <p>Chat with us in real-time</p>
+            <button class="contact-btn" onclick="DigiSancharSupport.openChat()">
+              <i class="fa-solid fa-message"></i> Start Chat
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sp-footer">
+    <div class="sp-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#faq">FAQs</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#safety">Safety Center</a></li>
+            <li><a href="#accessibility">Accessibility</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about.html">About DigiSanchar</a></li>
+            <li><a href="/careers.html">Careers</a></li>
+            <li><a href="/press.html">Press</a></li>
+            <li><a href="/investors.html">Investors</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/cookies.html">Cookie Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 DigiSanchar. All rights reserved.</p>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div id="chatWidget" class="chat-widget">
+    <div class="chat-header">
+      <h4>DigiSanchar Support</h4>
+      <button class="chat-close" onclick="DigiSancharSupport.closeChat()">
+        <i class="fa-solid fa-times"></i>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-message bot">
+        <div class="message-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="message-content">
+          <p>Hi! I'm here to help. What can I assist you with today?</p>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Type your message..." id="chatInput" />
+      <button onclick="DigiSancharSupport.sendMessage()">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/support.js"></script>
+</body>
+</html>
